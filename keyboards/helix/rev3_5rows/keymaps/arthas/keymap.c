@@ -18,18 +18,18 @@
 
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
-  _QWERTY = 0,
-  _LOWER,
-  _RAISE,
-  _ADJUST
+    _QWERTY = 0,
+    _LOWER,
+    _RAISE,
+    _ADJUST
 };
 
 // Defines the keycodes used by our macros in process_record_user
 enum custom_keycodes {
-  EISU = SAFE_RANGE,
-  KANA,
-  ADJUST,
-  RGBRST
+    EISU = SAFE_RANGE,
+    KANA,
+    ADJUST,
+    RGBRST
 };
 
 #define LOWER MO(_LOWER)
@@ -138,54 +138,56 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case EISU:
-      if (record->event.pressed) {
-        if (is_mac_mode()) {
-          register_code(KC_LANG2);
-        }else{
-          tap_code16(LALT(KC_GRAVE));
-        }
-      } else {
-        unregister_code(KC_LANG2);
-      }
-      return false;
-      break;
-    case KANA:
-      if (record->event.pressed) {
-        if (is_mac_mode()) {
-          register_code(KC_LANG1);
-        }else{
-          tap_code16(LALT(KC_GRAVE));
-        }
-      } else {
-        unregister_code(KC_LANG1);
-      }
-      return false;
-      break;
-    case ADJUST:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        layer_on(_RAISE);
-      } else {
-        layer_off(_LOWER);
-        layer_off(_RAISE);
-      }
-      break;
-    case RGBRST:
-      #ifdef RGBLIGHT_ENABLE
-        if (record->event.pressed) {
-          eeconfig_update_rgblight_default();
-          rgblight_enable();
-        }
-      #endif
-      break;
-  }
-  return true;
+    switch (keycode) {
+        case EISU:
+            if (record->event.pressed) {
+                if (is_mac_mode()) {
+                    register_code(KC_LANG2);
+                } else {
+                    tap_code16(LALT(KC_GRAVE));
+                }
+            } else {
+                unregister_code(KC_LANG2);
+            }
+
+            return false;
+        case KANA:
+            if (record->event.pressed) {
+                if (is_mac_mode()) {
+                    register_code(KC_LANG1);
+                } else {
+                    tap_code16(LALT(KC_GRAVE));
+                }
+            } else {
+                unregister_code(KC_LANG1);
+            }
+
+            return false;
+        case ADJUST:
+            if (record->event.pressed) {
+                layer_on(_LOWER);
+                layer_on(_RAISE);
+            } else {
+                layer_off(_LOWER);
+                layer_off(_RAISE);
+            }
+
+            break;
+        case RGBRST:
+        #ifdef RGBLIGHT_ENABLE
+            if (record->event.pressed) {
+                eeconfig_update_rgblight_default();
+                rgblight_enable();
+            }
+        #endif
+            break;
+    }
+
+    return true;
 }
 
 /*
