@@ -21,6 +21,7 @@ enum layer_names {
     _QWERTY = 0,
     _LOWER,
     _RAISE,
+    _LAUNCH,
     _ADJUST
 };
 
@@ -31,6 +32,7 @@ enum custom_keycodes {
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define LAUNCH MO(_LAUNCH)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Qwerty
@@ -43,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |   [  |   ]  |   N  |   M  |   ,  |   .  |   /  |Shift |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Ctrl | Esc  | GUI  | Alt  | XXXX |Lower |Space |Space |Raise |Enter | RAlt | Menu | XXXX |RCtrl |
+   * | Ctrl | Esc  | GUI  | Alt  |Launch|Lower |Space |Space |Raise |Enter | RAlt | Menu | XXXX |RCtrl |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT( \
@@ -51,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
       KC_F19,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_RBRC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-      KC_LCTL, KC_ESC,  KC_LGUI, KC_LALT, KC_NO,   LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, KC_APP,  KC_NO,   KC_RCTL \
+      KC_LCTL, KC_ESC,  KC_LGUI, KC_LALT, LAUNCH, LOWER,    KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, KC_APP,  KC_NO,   KC_RCTL \
     ),
   /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
@@ -94,6 +96,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_CAPS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, KC_F12,  _______, _______, KC_PGDN, KC_PGUP, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
       ),
+
+  /* Launch (Start or focus)
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * | G F1 | G F2 | G F3 | G F4 | G F5 | G F6 |             | G F7 | G F8 | G F9 | G F10| G F11| G F12|
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+
+#define GK(KEY) LGUI(KC_ ## KEY)
+
+  [_LAUNCH] =  LAYOUT( \
+      GK(F1), GK(F2),   GK(F3),  GK(F4),  GK(F5),  GK(F6),                    GK(F7),  GK(F8),  GK(F9),  GK(F10), GK(F11), GK(F12), \
+      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
+      ),
+
+#undef GK
 
   /* Adjust (Lower + Raise)
    * ,-----------------------------------------.             ,-----------------------------------------.
