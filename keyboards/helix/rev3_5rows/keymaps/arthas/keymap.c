@@ -14,16 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-
-
-// Defines names for use in layer keycodes and the keymap
-enum layer_names {
-    _QWERTY = 0,
-    _LOWER,
-    _RAISE,
-    _LAUNCH,
-    _ADJUST
-};
+#include "layer_number.h"
 
 // Defines the keycodes used by our macros in process_record_user
 enum custom_keycodes {

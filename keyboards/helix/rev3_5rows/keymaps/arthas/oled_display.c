@@ -15,14 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-
-// Defines names for use in layer keycodes and the keymap
-enum layer_names {
-  _QWERTY = 0,
-  _LOWER,
-  _RAISE,
-  _ADJUST
-};
+#include "layer_number.h"
 
 #ifdef OLED_DRIVER_ENABLE
 
@@ -54,6 +47,9 @@ void render_status(void) {
           break;
       case _LOWER:
           oled_write_P(PSTR("Lower\n"), false);
+          break;
+      case _LAUNCH:
+          oled_write_P(PSTR("Launch\n"), false);
           break;
       case _ADJUST:
           oled_write_P(PSTR("Adjust\n"), false);
