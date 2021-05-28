@@ -22,16 +22,10 @@
 void render_status(void) {
 
   // Render to mode icon
-  static const char os_logo[][2][3] PROGMEM  ={{{0x95,0x96,0},{0xb5,0xb6,0}},{{0x97,0x98,0},{0xb7,0xb8,0}}};
-  if (is_mac_mode()) {
-    oled_write_P(os_logo[0][0], false);
-    oled_write_P(PSTR("\n"), false);
-    oled_write_P(os_logo[0][1], false);
-  }else{
-    oled_write_P(os_logo[1][0], false);
-    oled_write_P(PSTR("\n"), false);
-    oled_write_P(os_logo[1][1], false);
-  }
+  static const char os_logo[2][3] PROGMEM  = {{0x99,0x9a,0},{0xb9,0xba,0}};
+  oled_write_P(os_logo[0], false);
+  oled_write_P(PSTR("\n"), false);
+  oled_write_P(os_logo[1], false);
 
   oled_write_P(PSTR(" "), false);
 
