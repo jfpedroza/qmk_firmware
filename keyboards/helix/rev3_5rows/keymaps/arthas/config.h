@@ -16,4 +16,5 @@
 
 #pragma once
 
-// place overrides here
+#define RGBLIGHT_SLEEP
+#define RGBLIGHT_LAYERS
