@@ -80,9 +80,9 @@ static void render_rgbled_status(bool full) {
       if (full) {
           snprintf(buf, sizeof(buf), " LED %2d: %d,%d,%d ",
                    rgblight_get_mode(),
-                   rgblight_get_hue()/RGBLIGHT_HUE_STEP,
-                   rgblight_get_sat()/RGBLIGHT_SAT_STEP,
-                   rgblight_get_val()/RGBLIGHT_VAL_STEP);
+                   rgblight_get_hue(),
+                   rgblight_get_sat(),
+                   rgblight_get_val());
       } else {
           snprintf(buf, sizeof(buf), "[%2d] ", rgblight_get_mode());
       }

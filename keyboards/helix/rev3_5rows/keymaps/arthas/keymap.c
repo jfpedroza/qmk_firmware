@@ -137,15 +137,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
-const rgblight_segment_t PROGMEM capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {6, 4, HSV_RED},       // Light 4 LEDs, starting with LED 6
-    {12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
+// Light LEDs 18 to 31 and 50 to 63 red when caps lock is active. Hard to ignore!
+const rgblight_segment_t PROGMEM rgb_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {18, 14, HSV_RED},      // Light 14 LEDs, starting with LED 18
+    {50, 14, HSV_RED}       // Light 14 LEDs, starting with LED 50
+);
+
+// Light LEDs 25 to 31 and 57 to 63 in purple when keyboard layer Adjust is active
+const rgblight_segment_t PROGMEM rgb_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {25, 7, HSV_PURPLE},
+    {57, 7, HSV_PURPLE}
 );
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    capslock_layer
+    rgb_capslock_layer,
+    rgb_adjust_layer
 );
 
 
@@ -154,8 +161,44 @@ void keyboard_post_init_user(void) {
     rgblight_layers = my_rgb_layers;
 }
 
+layer_state_t previous_state = _QWERTY;
+uint8_t default_hue = 168;
+uint8_t default_sat = 51;
+uint8_t default_val = 51;
+
+void set_default_color(void) {
+    if (previous_state == default_layer_state || get_highest_layer(previous_state) == _ADJUST) {
+        default_hue = rgblight_get_hue();
+        default_sat = rgblight_get_sat();
+        default_val = rgblight_get_val();
+    }
+}
+
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+
+    switch (get_highest_layer(state)) {
+    case _LOWER:
+        set_default_color();
+        rgblight_sethsv_noeeprom(106, 255, 69);
+        break;
+    case _RAISE:
+        set_default_color();
+        rgblight_sethsv_noeeprom(43, 255, 69);
+        break;
+    case _LAUNCH:
+        set_default_color();
+        rgblight_sethsv_noeeprom(180, 255, 69);
+        break;
+    default: //  for any other layers, or the default layer
+        rgblight_sethsv_noeeprom(default_hue, default_sat, default_val);
+        break;
+    }
+
+    rgblight_set_layer_state(1, layer_state_cmp(state, _ADJUST));
+
+    previous_state = state;
+    return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
