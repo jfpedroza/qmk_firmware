@@ -90,11 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Launch (Start or focus)
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * | G F1 | G F2 | G F3 | G F4 | G F5 | G F6 |             | G F7 | G F8 | G F9 | G F10| G F11| G F12|
+   * |      | FFOX |TBIRD |TGRAM |FRANZ |SPTFY |             | FFDE |SLACK |DBEAV |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
+   * |      |DPHIN |      |      |      |VWIKI |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
+   * |      |WEBTOR| STREM|      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
@@ -102,17 +102,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
 
-#define GK(KEY) LGUI(KC_ ## KEY)
+#define FIREFOX LGUI(KC_F1)
+#define THUNDER LGUI(KC_F2)
+#define TELEGRM LGUI(KC_F3)
+#define FRANZ LGUI(KC_F4)
+#define SPOTIFY LGUI(KC_F5)
+#define DOLPHIN LGUI(KC_F6)
+#define VIMWIKI LGUI(KC_F10)
+#define WEBTORR LGUI(KC_F11)
+#define STREMIO LGUI(KC_F12)
+
+#define FFDEVED SGUI(KC_F1)
+#define SLACK SGUI(KC_F2)
+#define DBEAVER SGUI(KC_F3)
 
   [_LAUNCH] =  LAYOUT( \
-      GK(F1), GK(F2),   GK(F3),  GK(F4),  GK(F5),  GK(F6),                    GK(F7),  GK(F8),  GK(F9),  GK(F10), GK(F11), GK(F12), \
-      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      XXXXXXX, FIREFOX, THUNDER, TELEGRM, FRANZ,   SPOTIFY,                   FFDEVED, SLACK,   DBEAVER, XXXXXXX, XXXXXXX, XXXXXXX, \
+      XXXXXXX, DOLPHIN, XXXXXXX, XXXXXXX, XXXXXXX, VIMWIKI,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+      XXXXXXX, WEBTORR, STREMIO, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
       ),
-
-#undef GK
 
   /* Adjust (Lower + Raise)
    * ,-----------------------------------------.             ,-----------------------------------------.
