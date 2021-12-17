@@ -95,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |      | FFOX |TBIRD |TGRAM |FRANZ |SPTFY |             | FFDE |SLACK |DBEAV |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |DPHIN |      |      |      |VWIKI |             |      |      |      |      |      |      |
+   * |      |FILES |      |      |      |VWIKI |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |WEBTOR| STREM|      |      |      |             |      |      |      |      |      |      |
+   * |      |TORREN| STREM|      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
@@ -110,9 +110,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define TELEGRM LGUI(KC_F3)
 #define FRANZ LGUI(KC_F4)
 #define SPOTIFY LGUI(KC_F5)
-#define DOLPHIN LGUI(KC_F6)
+#define FILEEXP LGUI(KC_F6)
 #define VIMWIKI LGUI(KC_F10)
-#define WEBTORR LGUI(KC_F11)
+#define TORRENT LGUI(KC_F11)
 #define STREMIO LGUI(KC_F12)
 
 #define FFDEVED SGUI(KC_F1)
@@ -121,8 +121,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LAUNCH] =  LAYOUT( \
       XXXXXXX, FIREFOX, THUNDER, TELEGRM, FRANZ,   SPOTIFY,                   FFDEVED, SLACK,   DBEAVER, XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX, DOLPHIN, XXXXXXX, XXXXXXX, XXXXXXX, VIMWIKI,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX, WEBTORR, STREMIO, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+      XXXXXXX, FILEEXP, XXXXXXX, XXXXXXX, XXXXXXX, VIMWIKI,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+      XXXXXXX, TORRENT, STREMIO, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
       ),
