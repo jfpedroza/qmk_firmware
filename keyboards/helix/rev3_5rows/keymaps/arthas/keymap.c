@@ -26,6 +26,8 @@ enum custom_keycodes {
 #define RAISE MO(_RAISE)
 #define LAUNCH MO(_LAUNCH)
 
+#define LAYOUT_wrapper(...)    LAYOUT(__VA_ARGS__)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Qwerty
    * ,-----------------------------------------.             ,-----------------------------------------.
@@ -84,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = LAYOUT( \
-      KC_GRV,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL, \
+      KC_GRV,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,  \
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PLUS, KC_UNDS,                   KC_UNDS, KC_PLUS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_EQL,  KC_MINS,                   KC_MINS, KC_EQL,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
@@ -123,8 +125,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, FIREFOX, THUNDER, TELEGRM, FRANZ,   SPOTIFY,                   FFDEVED, SLACK,   DBEAVER, XXXXXXX, XXXXXXX, XXXXXXX, \
       XXXXXXX, FILEEXP, XXXXXXX, XXXXXXX, XXXXXXX, VIMWIKI,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       XXXXXXX, TORRENT, STREMIO, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+      XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
+      ),
+
+#define KP_EQ____SLASH____ASTER KC_KP_EQUAL, KC_KP_SLASH, KC_KP_ASTERISK
+#define KP_MINUS KC_KP_MINUS
+#define KP_PLUS KC_KP_PLUS
+#define KP_DOT KC_KP_DOT
+#define KP_ENTER KC_KP_ENTER
+
+  /* Keypad (Lower + Launch)
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * |      |      |      |      |      |      |             |Nlock |      |   =  |   /  |   *  | Bksp |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |      |      |      |      |             |      |      |   7  |   8  |   9  |   -  |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |      |      |      |      |      |      |      |      |   4  |   5  |   6  |   +  |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      | Shift| Shift|      |      |      |      |      |      |   1  |   2  |   3  |Enter |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |      |      |      |      |      |   0  |   0  |   .  |Enter |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+  [_KEYPAD] =  LAYOUT_wrapper( \
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_NLCK, XXXXXXX, KP_EQ____SLASH____ASTER,   KC_BSPC, \
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8, KC_KP_9, KP_MINUS,\
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_KP_4, KC_KP_5, KC_KP_6, KP_PLUS, \
+      _______, XXXXXXX, KC_LSFT, KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KP_1, KC_KP_2, KC_KP_3, KP_ENTER,\
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, KC_KP_0, KC_KP_0, KP_DOT,  KP_ENTER \
       ),
 
   /* Adjust (Lower + Raise)
@@ -189,6 +218,7 @@ void set_default_color(void) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    state = update_tri_layer_state(state, _LOWER, _LAUNCH, _KEYPAD);
 
     switch (get_highest_layer(state)) {
     case _LOWER:

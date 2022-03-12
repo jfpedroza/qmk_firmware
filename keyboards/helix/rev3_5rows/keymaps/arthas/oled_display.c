@@ -45,6 +45,9 @@ void render_status(void) {
       case _LAUNCH:
           oled_write_P(PSTR("Launch\n"), false);
           break;
+      case _KEYPAD:
+          oled_write_P(PSTR("Keypad\n"), false);
+          break;
       case _ADJUST:
           oled_write_P(PSTR("Adjust\n"), false);
           break;

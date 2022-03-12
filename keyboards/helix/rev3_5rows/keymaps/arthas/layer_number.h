@@ -9,5 +9,6 @@ enum layer_number {
     _LOWER,
     _RAISE,
     _LAUNCH,
+    _KEYPAD,
     _ADJUST,
 };
