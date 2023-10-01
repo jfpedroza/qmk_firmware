@@ -95,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Launch (Start or focus)
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      | FFOX |TBIRD |TGRAM |FRANZ |SPTFY |             | FFDE |SLACK |DBEAV |      |      |      |
+   * |      | FFOX |TBIRD |TGRAM |FERDI |SPTFY |             | FFDE |SLACK |DBEAV |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |FILES |      |      |      |VWIKI |             |      |      |      |      |      |      |
+   * |      |FILES | TODO | TASK |      |VWIKI |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |TORREN| STREM|      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
@@ -110,9 +110,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define FIREFOX LGUI(KC_F1)
 #define THUNDER LGUI(KC_F2)
 #define TELEGRM LGUI(KC_F3)
-#define FRANZ LGUI(KC_F4)
+#define FERDIUM LGUI(KC_F4)
 #define SPOTIFY LGUI(KC_F5)
 #define FILEEXP LGUI(KC_F6)
+#define TODOIST LGUI(KC_F7)
+#define TASKMGR LGUI(KC_F8)
 #define VIMWIKI LGUI(KC_F10)
 #define TORRENT LGUI(KC_F11)
 #define STREMIO LGUI(KC_F12)
@@ -122,8 +124,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define DBEAVER SGUI(KC_F3)
 
   [_LAUNCH] =  LAYOUT( \
-      XXXXXXX, FIREFOX, THUNDER, TELEGRM, FRANZ,   SPOTIFY,                   FFDEVED, SLACK,   DBEAVER, XXXXXXX, XXXXXXX, XXXXXXX, \
-      XXXXXXX, FILEEXP, XXXXXXX, XXXXXXX, XXXXXXX, VIMWIKI,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+      XXXXXXX, FIREFOX, THUNDER, TELEGRM, FERDIUM, SPOTIFY,                   FFDEVED, SLACK,   DBEAVER, XXXXXXX, XXXXXXX, XXXXXXX, \
+      XXXXXXX, FILEEXP, TODOIST, TASKMGR, XXXXXXX, VIMWIKI,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       XXXXXXX, TORRENT, STREMIO, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
