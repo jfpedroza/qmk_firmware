@@ -15,9 +15,11 @@
  */
 
 #include QMK_KEYBOARD_H
+
+#include <stdio.h>
 #include "layer_number.h"
 
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 
 void render_status(void) {
 
@@ -94,12 +96,13 @@ static void render_rgbled_status(bool full) {
 #endif
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
   if(is_keyboard_master()){
     render_status();
   }else{
     render_logo();
     render_rgbled_status(true);
   }
+    return false;
 }
 #endif
