@@ -1,0 +1,9 @@
+[tools]
+# The venv below is built against this exact interpreter; mise keeps it installed.
+python = "3.9"
+
+[env]
+# The qmk CLI can't run on Python 3.14, so it lives in its own venv outside this
+# repo. Activating it puts `qmk` on PATH and makes the build's Python helpers
+# (which still use the removed `ast.Num`) work under plain `make` too.
+_.python.venv = { path = "{{ env.HOME }}/code/lib/qmk_cli/.venv", create = false }
